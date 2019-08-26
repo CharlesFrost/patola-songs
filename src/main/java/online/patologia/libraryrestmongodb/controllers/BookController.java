@@ -3,6 +3,7 @@ package online.patologia.libraryrestmongodb.controllers;
 import online.patologia.libraryrestmongodb.models.Book;
 import online.patologia.libraryrestmongodb.repositories.BookRepository;
 import online.patologia.libraryrestmongodb.services.BookService;
+import online.patologia.libraryrestmongodb.services.ServiceResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
@@ -22,35 +23,40 @@ public class BookController {
 
 
     @GetMapping("/book")
-    public ResponseEntity<List<Book>> getALlBooks() {
-        bookService.findAll();
-        return new ResponseEntity<List<Book>>(bookService.findAll(), HttpStatus.OK);
+    public ResponseEntity<Object> getALlBooks() {
+        ServiceResponse<List<Book>> serviceResponse = new ServiceResponse<>("success", bookService.findAll());
+        return new ResponseEntity<Object>(serviceResponse, HttpStatus.OK);
     }
 
     @PostMapping("/book")
-    public ResponseEntity<Book> saveBook(@RequestBody Book book) {
-        return new ResponseEntity<Book>(bookService.save(book), HttpStatus.OK);
+    public ResponseEntity<Object> saveBook(@RequestBody Book book) {
+        ServiceResponse<Book> serviceResponse = new ServiceResponse<>("success", bookService.save(book));
+        return new ResponseEntity<Object>(serviceResponse, HttpStatus.OK);
     }
 
     @DeleteMapping("/book/{id}")
-    public ResponseEntity<?> updateBook(@PathVariable("id") String id) {
+    public ResponseEntity<Object> deleteBook(@PathVariable("id") String id) {
         bookService.deleteById(id);
-        return new ResponseEntity<String>("success",HttpStatus.OK);
+        ServiceResponse<Boolean> serviceResponse = new ServiceResponse<>("success", true);
+        return new ResponseEntity<Object>(serviceResponse,HttpStatus.OK);
     }
 
     @GetMapping("/book/{id}")
-    public ResponseEntity<Book> getOneBook(@PathVariable("id") String id) {
-        return new ResponseEntity<Book>(bookService.getOne(id), HttpStatus.OK);
+    public ResponseEntity<Object> getOneBook(@PathVariable("id") String id) {
+        ServiceResponse<Book> serviceResponse = new ServiceResponse<>("success", bookService.getOne(id));
+        return new ResponseEntity<Object>(serviceResponse, HttpStatus.OK);
     }
 
     @PutMapping("/book")
-    public ResponseEntity<Book> updateBook(@RequestBody Book book) {
-        return new ResponseEntity<Book>(bookService.update(book),HttpStatus.OK);
+    public ResponseEntity<Object> updateBook(@RequestBody Book book) {
+        ServiceResponse<Book> serviceResponse = new ServiceResponse<>("success", bookService.update(book));
+        return new ResponseEntity<Object>(bookService.update(book),HttpStatus.OK);
     }
 
     @DeleteMapping("/book")
-    public ResponseEntity<?> deleteAll() {
+    public ResponseEntity<Object> deleteAll() {
         bookService.deleteAll();
-        return new ResponseEntity<String>("success",HttpStatus.OK);
+        ServiceResponse<Boolean> serviceResponse = new ServiceResponse<>("success", true);
+        return new ResponseEntity<Object>("success",HttpStatus.OK);
     }
 }

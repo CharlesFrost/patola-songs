@@ -13,12 +13,12 @@ public class Book {
     private String id;
     private String author;
     private String name;
-    private int releaseDate;
+    private int releaseYear;
 
     public Book(String author, String name, int releaseDate) {
         this.author = author;
         this.name = name;
-        this.releaseDate = releaseDate;
+        this.releaseYear = releaseDate;
     }
 
     public Book() {
@@ -48,18 +48,18 @@ public class Book {
         this.name = name;
     }
 
-    public int getReleaseDate() {
-        return releaseDate;
+    public int getReleaseYear() {
+        return releaseYear;
     }
 
-    public void setReleaseDate(int releaseDate) {
-        this.releaseDate = releaseDate;
+    public void setReleaseYear(int releaseDate) {
+        this.releaseYear = releaseDate;
     }
 
     public Book(String id, String author, String name, int releaseDate) {
         this.id = id;
         this.author = author;
         this.name = name;
-        this.releaseDate = releaseDate;
+        this.releaseYear = releaseDate;
     }
 }
