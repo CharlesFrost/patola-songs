@@ -1,28 +1,34 @@
 package online.patologia.libraryrestmongodb.models;
 
+import lombok.*;
+import online.patologia.libraryrestmongodb.validators.Year;
+import org.springframework.boot.convert.DataSizeUnit;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.validation.constraints.*;
 
+@Data
+@NoArgsConstructor
+@ToString
+@AllArgsConstructor
 @Document
 public class Book {
     @Id
     private String id;
+    //@NotNull(message = "Proszę podać autora!")
+    @NotBlank(message = "Proszę podać autora!")
+    //@NotEmpty(message = "Proszę podać autora!")
     private String author;
+    //@NotNull(message = "Proszę podać nazwę!")
+    @NotBlank(message = "Proszę podać nazwę!")
+   // @NotEmpty(message = "Proszę podać nazwę!")
     private String name;
-    private int releaseYear;
-
-    public Book(String author, String name, int releaseDate) {
-        this.author = author;
-        this.name = name;
-        this.releaseYear = releaseDate;
-    }
-
-    public Book() {
-    }
+    @Year
+    private String releaseYear;
 
     public String getId() {
         return id;
@@ -48,18 +54,11 @@ public class Book {
         this.name = name;
     }
 
-    public int getReleaseYear() {
+    public String getReleaseYear() {
         return releaseYear;
     }
 
-    public void setReleaseYear(int releaseDate) {
-        this.releaseYear = releaseDate;
-    }
-
-    public Book(String id, String author, String name, int releaseDate) {
-        this.id = id;
-        this.author = author;
-        this.name = name;
-        this.releaseYear = releaseDate;
+    public void setReleaseYear(String releaseYear) {
+        this.releaseYear = releaseYear;
     }
 }

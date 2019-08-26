@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -29,8 +30,8 @@ public class BookController {
     }
 
     @PostMapping("/book")
-    public ResponseEntity<Object> saveBook(@RequestBody Book book) {
-        ServiceResponse<Book> serviceResponse = new ServiceResponse<>("success", bookService.save(book));
+    public ResponseEntity<Object> saveBook(@RequestBody @Valid Book book) {
+        ServiceResponse<Book> serviceResponse = new ServiceResponse<>("success", bookService.save(bookService.trimBook(book)));
         return new ResponseEntity<Object>(serviceResponse, HttpStatus.OK);
     }
 
@@ -48,8 +49,8 @@ public class BookController {
     }
 
     @PutMapping("/book")
-    public ResponseEntity<Object> updateBook(@RequestBody Book book) {
-        ServiceResponse<Book> serviceResponse = new ServiceResponse<>("success", bookService.update(book));
+    public ResponseEntity<Object> updateBook(@RequestBody @Valid Book book) {
+        ServiceResponse<Book> serviceResponse = new ServiceResponse<>("success", bookService.update(bookService.trimBook(book)));
         return new ResponseEntity<Object>(bookService.update(book),HttpStatus.OK);
     }
 

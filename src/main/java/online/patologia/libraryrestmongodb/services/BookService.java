@@ -36,4 +36,11 @@ public class BookService {
     public void deleteAll(){
         bookRepository.deleteAll();
     }
+
+    public Book trimBook(Book book) {
+        book.setAuthor(book.getAuthor().trim());
+        book.setName(book.getName().trim());
+        book.setReleaseYear(book.getReleaseYear().trim());
+        return book;
+    }
 }
