@@ -10,25 +10,32 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.validation.constraints.*;
+import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
 @ToString
 @AllArgsConstructor
 @Document
-public class Book {
+public class Song {
     @Id
     private String id;
-    //@NotNull(message = "Proszę podać autora!")
-    @NotBlank(message = "Proszę podać autora!")
-    //@NotEmpty(message = "Proszę podać autora!")
     private String author;
-    //@NotNull(message = "Proszę podać nazwę!")
-    @NotBlank(message = "Proszę podać nazwę!")
-   // @NotEmpty(message = "Proszę podać nazwę!")
-    private String name;
-    @Year
-    private String releaseYear;
+    @NotBlank(message = "Proszę podać link do piosenki!")
+    @NotEmpty(message = "Proszę podać link do piosenki!")
+    @NotNull(message = "Proszę podać link do piosenki!")
+    private String link;
+    //@Year
+    private LocalDateTime date;
+    private String deletePassword;
+
+    public String getDeletePassword() {
+        return deletePassword;
+    }
+
+    public void setDeletePassword(String deletePassword) {
+        this.deletePassword = deletePassword;
+    }
 
     public String getId() {
         return id;
@@ -46,19 +53,19 @@ public class Book {
         this.author = author;
     }
 
-    public String getName() {
-        return name;
+    public String getLink() {
+        return link;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setLink(String link) {
+        this.link = link;
     }
 
-    public String getReleaseYear() {
-        return releaseYear;
+    public LocalDateTime getDate() {
+        return date;
     }
 
-    public void setReleaseYear(String releaseYear) {
-        this.releaseYear = releaseYear;
+    public void setDate(LocalDateTime date) {
+        this.date = date;
     }
 }

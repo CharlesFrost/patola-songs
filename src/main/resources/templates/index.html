@@ -2,23 +2,8 @@
 <html lang="pl" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Biblioteka</title>
-    <style>
-    .card-columns {
-  @include media-breakpoint-only(xl) {
-    column-count: 5;
-  }
-  @include media-breakpoint-only(lg) {
-    column-count: 4;
-  }
-  @include media-breakpoint-only(md) {
-    column-count: 3;
-  }
-  @include media-breakpoint-only(sm) {
-    column-count: 2;
-  }
-}
-</style>
+    <title>Biblioteka - test</title>
+
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -29,18 +14,14 @@
 </head>
 <body>
 <div id="container">
-<form id="addNewBookForm">
+<form id="addNewSongForm">
     <div class="form-group">
-        <label for="bookName">Nazwa książki</label>
-        <input type="text" class="form-control" id="bookName" name="bookName" placeholder="Wpisz nazwę książki">
+        <label for="link">Link:</label>
+        <input type="text" class="form-control" id="link" name="link" placeholder="Wklej link">
     </div>
     <div class="form-group">
-        <label for="author">Autor</label>
-        <input type="text" class="form-control" id="author" name="author" placeholder="Autor">
-    </div>
-    <div class="form-group">
-        <label for="releaseYear">Rok wydania</label>
-        <input type="text" class="form-control" id="releaseYear" name="releaseYear" placeholder="Rok wydania">
+        <label for="deletePassword">Wpisz hasło do usunięcia piosenki (opcjonalne)</label>
+        <input type="password" class="form-control" id="deletePassword" name="deletePassword" placeholder="Hasło do usunięcia piosenki">
     </div>
 <!--    <div class="form-group form-check">-->
 <!--        <input type="checkbox" class="form-check-input" id="exampleCheck1">-->
@@ -50,12 +31,12 @@
 </form>
 <div id="postResultDiv"></div>
     <div  id="getResultDiv1" class="card-deck">
-        <div th:each="book : ${books}" class="card">
+        <div th:each="song : ${songs}" class="card">
             <img src="https://nasionbank.pl/images/Topy_marihuany/top_marihuany_1.jpg" width="100" height="300" class="card-img-top" alt="...">
             <div class="card-body">
-                <h5 class="card-title" th:text="${book.name}">Card title</h5>
-                <p class="card-text" th:text="${book.releaseYear}">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <p class="card-text" th:text="${book.author}"><small class="text-muted">Last updated 3 mins ago</small></p>
+                <h5 class="card-title" th:text="${song.link}">Card title</h5>
+                <p class="card-text" th:text="${song.author}">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+<!--                <p class="card-text" th:text="${song.author}"><small class="text-muted">Last updated 3 mins ago</small></p>-->
             </div>
         </div>
     </div>

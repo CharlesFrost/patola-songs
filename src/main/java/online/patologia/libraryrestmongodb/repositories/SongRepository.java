@@ -1,9 +1,9 @@
 package online.patologia.libraryrestmongodb.repositories;
 
-import online.patologia.libraryrestmongodb.models.Book;
+import online.patologia.libraryrestmongodb.models.Song;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface BookRepository extends MongoRepository<Book,String> {
+public interface SongRepository extends MongoRepository<Song,String> {
 }
