@@ -37,7 +37,8 @@ public class SongService {
     }
 
     public Song trimSong(Song song) {
-//        song.setAuthor(song.getAuthor().trim());
+        song.setLink(song.getLink().trim());
+        song.setDeletePassword(song.getDeletePassword().trim());
         return song;
     }
 }
