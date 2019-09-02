@@ -17,24 +17,25 @@ import java.time.LocalDateTime;
 @ToString
 @AllArgsConstructor
 @Document
-public class Song {
+public class Song implements Comparable<Song> {
     @Id
     private String id;
     private String author;
     @NotBlank(message = "Proszę podać link do piosenki!")
     @NotEmpty(message = "Proszę podać link do piosenki!")
     @NotNull(message = "Proszę podać link do piosenki!")
+    @Size(min = 8, message = "Link jest zbyt krótki!")
     private String link;
     //@Year
     private LocalDateTime date;
-    private String deletePassword;
+    private String title;
 
-    public String getDeletePassword() {
-        return deletePassword;
+    public String getTitle() {
+        return title;
     }
 
-    public void setDeletePassword(String deletePassword) {
-        this.deletePassword = deletePassword;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getId() {
@@ -67,5 +68,10 @@ public class Song {
 
     public void setDate(LocalDateTime date) {
         this.date = date;
+    }
+
+    @Override
+    public int compareTo(Song o) {
+        return o.getDate().compareTo(getDate());
     }
 }

@@ -19,10 +19,6 @@
         <label for="link">Link:</label>
         <input type="text" class="form-control" id="link" name="link" placeholder="Wklej link">
     </div>
-    <div class="form-group">
-        <label for="deletePassword">Wpisz hasło do usunięcia piosenki (opcjonalne)</label>
-        <input type="password" class="form-control" id="deletePassword" name="deletePassword" placeholder="Hasło do usunięcia piosenki">
-    </div>
 <!--    <div class="form-group form-check">-->
 <!--        <input type="checkbox" class="form-check-input" id="exampleCheck1">-->
 <!--        <label class="form-check-label" for="exampleCheck1">Check me out</label>-->
@@ -30,11 +26,11 @@
     <button id="submitData"  class="btn btn-primary">Submit</button>
 </form>
 <div id="postResultDiv"></div>
-    <div  id="getResultDiv1" class="card-deck">
+    <div class="card-deck">
         <div th:each="song : ${songs}" class="card">
-            <img src="https://nasionbank.pl/images/Topy_marihuany/top_marihuany_1.jpg" width="100" height="300" class="card-img-top" alt="...">
+            <iframe width="560" height="315" th:src="@{https://www.youtube.com/embed/{url} (url=${song.link})}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
             <div class="card-body">
-                <h5 class="card-title" th:text="${song.link}">Card title</h5>
+                <h5 class="card-title" th:text="${song.title}">Card title</h5>
                 <p class="card-text" th:text="${song.author}">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
 <!--                <p class="card-text" th:text="${song.author}"><small class="text-muted">Last updated 3 mins ago</small></p>-->
             </div>

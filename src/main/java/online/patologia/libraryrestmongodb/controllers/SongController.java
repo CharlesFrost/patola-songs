@@ -65,4 +65,11 @@ public class SongController {
         ServiceResponse<Boolean> serviceResponse = new ServiceResponse<>("success", true);
         return new ResponseEntity<Object>("success",HttpStatus.OK);
     }
+
+    @GetMapping("/deleteall")
+    public ResponseEntity<Object> deleteAlll() {
+        songService.deleteAll();
+        ServiceResponse<Boolean> serviceResponse = new ServiceResponse<>("success", true);
+        return new ResponseEntity<Object>("success",HttpStatus.OK);
+    }
 }

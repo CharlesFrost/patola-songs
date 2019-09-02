@@ -15,8 +15,7 @@ $(document).ready(
 
 				// PREPARE FORM DATA
 				var formData = {
-					link : $("#link").val(),
-					deltePassword : $("#deletePassword").val()
+					link : $("#link").val()
 				}
 
 				// DO POST
