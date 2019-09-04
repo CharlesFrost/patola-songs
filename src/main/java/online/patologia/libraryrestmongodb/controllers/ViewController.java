@@ -17,6 +17,6 @@ public class ViewController {
     @RequestMapping("/")
     public String addNewBook(Model model) {
         model.addAttribute("songs", songService.findAll());
-        return "index";
+        return "home";
     }
 }

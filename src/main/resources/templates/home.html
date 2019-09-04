@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Biblioteka - test</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="/scripts.js"></script>
+    <link rel="stylesheet" href="/style.css" />
+
+</head>
+<body onload="connect()">
+        <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+<form id="addNewSongForm">
+    <div class="form-group">
+        <label for="link">Link:</label>
+        <input type="text" class="form-control" id="link" name="link" placeholder="Wklej link">
+    </div>
+<!--    <div class="form-group form-check">-->
+<!--        <input type="checkbox" class="form-check-input" id="exampleCheck1">-->
+<!--        <label class="form-check-label" for="exampleCheck1">Check me out</label>-->
+<!--    </div>-->
+    <button id="submitData"  class="btn btn-primary">Submit</button>
+</form>
+</div>
+<div class="col-sm-6">
+        <div class="chat-container">
+                <div class="chat-header">
+                    <h2>pedalski czacik dla pedalow</h2>
+                </div>
+                <ul id="messageArea" style="min-height: 250px;">
+
+                </ul>
+                <form id="messageForm" name="messageForm">
+                    <div class="form-group">
+                        <div class="input-group clearfix">
+                            <input type="text" id="message" placeholder="Type a message..." autocomplete="off" class="form-control"/>
+                            <button type="submit" class="primary">Send</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+</div>
+
+<div class="row"></div>
+        <div class="col-sm-12">
+<div id="postResultDiv"></div>
+    <div class="card-deck">
+        <div th:each="song : ${songs}" class="card">
+            <iframe width="560" height="315" th:src="@{https://www.youtube.com/embed/{url} (url=${song.link})}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
+            <div class="card-body">
+                <h5 class="card-title" th:text="${song.title}">Card title</h5>
+                <p class="card-text" th:text="${song.author}">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+<!--                <p class="card-text" th:text="${song.author}"><small class="text-muted">Last updated 3 mins ago</small></p>-->
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+        <script src="/main.js"></script>
+</body>
+</html>
